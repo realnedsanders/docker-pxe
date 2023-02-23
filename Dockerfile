@@ -25,8 +25,8 @@ RUN \
   && rm /tmp/syslinux-"$SYSLINUX_VERSION".tar.gz \
   && wget -q http://www.memtest.org/download/archives/"$MEMTEST_VERSION"/memtest86+-"$MEMTEST_VERSION".bin.gz \
   && gzip -d memtest86+-"$MEMTEST_VERSION".bin.gz \
-  && mkdir -p /var/lib/tftpboot/memtest \
-  && mv memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/memtest/memtest86+
+  && mkdir -p /var/lib/tftpboot/images \
+  && mv memtest86+-$MEMTEST_VERSION.bin /var/lib/tftpboot/images/memtest86+
 
 # Configure PXE and TFTP
 COPY tftpboot/ /var/lib/tftpboot

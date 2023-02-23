@@ -1,9 +1,9 @@
-DEFAULT memtest86
+DEFAULT skiffos
   SAY Now booting in the PXE Boot MENU...
 
-LABEL memtest86
-  MENU LABEL Memtest86+
-  KERNEL /memtest/memtest86+
+LABEL skiffos
+  MENU LABEL SkiffOS
+  KERNEL /images/skiffos
 # eventually include additional entries
 INCLUDE pxelinux.cfg/additional_menu_entries
 
