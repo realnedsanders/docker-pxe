@@ -1,9 +1,9 @@
-DEFAULT skiffos
+DEFAULT defaultos
   SAY Now booting in the PXE Boot MENU...
 
-LABEL skiffos
-  MENU LABEL SkiffOS
-  KERNEL /images/skiffos
+LABEL defaultos
+  MENU LABEL Default
+  KERNEL /images/default
 # eventually include additional entries
 INCLUDE pxelinux.cfg/additional_menu_entries
 
