@@ -1,4 +1,4 @@
 #!ipxe
 
-kernel tftp://172.21.40.9/images/default
+kernel http://172.21.40.9/default
 boot

@@ -8,12 +8,11 @@ RUN apk add --no-cache \
   wget
 
 ENV MEMTEST_VERSION 5.31b
-ENV TEMP_IPXE_PATH /tmp/ipxe
 ENV TFTPBOOT_PATH /var/lib/tftpboot
 
 WORKDIR /tmp
 RUN \
-  && mkdir -p $TFTPBOOT_PATH \
+  mkdir -p $TFTPBOOT_PATH \
   && (for i in ipxe.efi snponly.efi undionly.kpxe ipxe.pxe; do wget -O $TFTPBOOT_PATH/$i http://boot.ipxe.org/$i; done) \
   && wget -q http://www.memtest.org/download/archives/"$MEMTEST_VERSION"/memtest86+-"$MEMTEST_VERSION".bin.gz \
   && gzip -d memtest86+-"$MEMTEST_VERSION".bin.gz \
