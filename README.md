@@ -24,7 +24,7 @@ is to run a such containers using the network of the host running them. If you'r
 using Docker, you can add the `--net=host` option when running the container:
 
 ```shell
-docker run -it --rm --net=host ferrarimarco/pxe
+docker run -it --rm --net=host -v ./image.vmlinux:/var/lib/tftpboot/images/skiffos ferrarimarco/pxe --dhcp-range=192.168.1.2,192.168.1.200,255.255.255.0
 ```
 
 The container image is also available on GitHub container registry: [`ghcr.io/ferrarimarco/pxe`](https://github.com/ferrarimarco/docker-pxe/pkgs/container/pxe).
@@ -56,6 +56,7 @@ The syntax for this file is described in the [syslinux documentation](http://www
 Here is an `additional_menu_entries` file to include (along with the default Memtest86+) two additional boot options: a customized Memtest86+ and Ubuntu 16.04.
 
 <!-- markdownlint-disable line-length -->
+
 ```text
 LABEL memtest86-2
   MENU LABEL Memtest86+ 2nd entry
@@ -65,6 +66,7 @@ LABEL ubuntu-16-04-amd64
   KERNEL /ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/linux
   APPEND /install/vmlinuz auto=true interface=eth0 hostname=cluster domain=home url=tftp://<pxe-container-ip>/preseed/16.04/preseed.cfg initrd=ubuntu/16.04/16.04.2-server-amd64/install/netboot/ubuntu-installer/amd64/initrd.gz debian-installer=en_US locale=en_US kbd-chooser/method=us keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false --
 ```
+
 <!-- markdownlint-enable line-length -->
 
 ## Testing and validating the setup
@@ -77,11 +79,11 @@ LABEL ubuntu-16-04-amd64
 ### How to run the test environment
 
 1. Check the IP address ranged configured by the Virtualbox DHCP server and
-    configure your `dhcp-range` and `/var/lib/tftpboot/pxelinux.cfg/default` accordingly.
+   configure your `dhcp-range` and `/var/lib/tftpboot/pxelinux.cfg/default` accordingly.
 1. Run the container with a suitable DHCP configuration and the `--net=host` option.
 1. Run `vagrant up` from the root of the directory where you cloned this
-    repository. A Virtualbox VM (with a NATed network adapter) will boot from
-    the given PXE.
+   repository. A Virtualbox VM (with a NATed network adapter) will boot from
+   the given PXE.
 
 #### Example
 
