@@ -1,3 +1,0 @@
-LABEL memtest86
-  MENU LABEL Memtest86+
-  KERNEL /images/memtest86+

@@ -1,0 +1,4 @@
+#!ipxe
+
+kernel tftp://172.21.40.9/images/default
+boot
